@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siva ❤️ Purnima</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff4b91,#ff8fab,#ffd6e8);
+}
+
+/* Pages */
+.page{
+    min-height:100vh;
+    width:100%;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.page.active{
+    display:flex;
+}
+
+/* Page backgrounds */
+#page1{background: radial-gradient(circle at top right, rgba(255,255,255,1), rgba(255,255,255,0.1) 14%), linear-gradient(180deg,#081a44 0%,#3b1f66 40%,#a84f95 100%);}
+#page1::before{content:'';position:absolute;top:5%;right:8%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at center, rgba(255,255,255,1), rgba(255,255,255,0.85) 55%, transparent 78%);box-shadow:0 0 110px rgba(255,255,255,0.9);}
+#page1::after{content:'';position:absolute;left:8%;bottom:8%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at center, rgba(255,255,255,0.95), rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.1) 65%, transparent 75%);box-shadow:0 0 40px rgba(255,255,255,0.35);}
+#page4{background: radial-gradient(circle at top left, rgba(255,255,255,1), rgba(255,255,255,0.2) 18%), linear-gradient(180deg,#11193c 0%,#541f5f 35%,#f05395 100%);}
+#page4::before{content:'';position:absolute;top:8%;left:8%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at center, rgba(255,255,255,1), rgba(255,255,255,0.85) 55%, transparent 78%);box-shadow:0 0 120px rgba(255,255,255,0.95);}
+#page4::after{content:'❤️';position:absolute;right:12%;bottom:14%;font-size:90px;opacity:0.18;}
+#page2{background: linear-gradient(135deg,#ffe0f6 0%,#fff4d8 45%,#ffd2ec 100%);}
+#page3{background: linear-gradient(135deg,#5b2d8b 0%,#a74da6 40%,#f77ecc 100%);}
+#pageMem2{background: linear-gradient(135deg,#ffdfd3 0%,#ffe7f0 40%,#fbe8ff 100%);}
+#pageAbout1{background: linear-gradient(135deg,#ffe5c2 0%,#ffd1f7 50%,#f7cbff 100%);}
+#pageAbout2{background: linear-gradient(135deg,#cdf3f9 0%,#e7d3ff 50%,#ffdaf1 100%);}
+#pageAbout3{background: linear-gradient(135deg,#ffd2fb 0%,#ffebd3 45%,#ffe8f7 100%);}
+#pageGiftLetter{background: linear-gradient(135deg,#fffaf0 0%,#eaddff 55%,#ffe6f0 100%);}
+#pageAfterGallery{background: linear-gradient(135deg,#eb70a5 0%,#ff9ad1 50%,#ffd1e7 100%);}
+
+/* Cute heart background */
+.hearts{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+}
+
+.hearts span{
+    position:absolute;
+    bottom:-60px;
+    font-size:25px;
+    animation:heartFloat 8s linear infinite;
+    opacity:0.8;
+}
+
+.hearts span:nth-child(1){left:5%;animation-delay:0s;font-size:22px;}
+.hearts span:nth-child(2){left:15%;animation-delay:1s;font-size:30px;}
+.hearts span:nth-child(3){left:25%;animation-delay:3s;font-size:24px;}
+.hearts span:nth-child(4){left:35%;animation-delay:2s;font-size:35px;}
+.hearts span:nth-child(5){left:45%;animation-delay:4s;font-size:20px;}
+.hearts span:nth-child(6){left:55%;animation-delay:1.5s;font-size:28px;}
+.hearts span:nth-child(7){left:65%;animation-delay:3.5s;font-size:32px;}
+.hearts span:nth-child(8){left:75%;animation-delay:2.5s;font-size:23px;}
+.hearts span:nth-child(9){left:85%;animation-delay:5s;font-size:30px;}
+.hearts span:nth-child(10){left:95%;animation-delay:0.5s;font-size:26px;}
+
+@keyframes heartFloat{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* First page */
+.love-box{
+    position:relative;
+    z-index:2;
+    width:90%;
+    max-width:520px;
+    padding:45px 25px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    color:white;
+    border:2px solid rgba(255,255,255,0.3);
+}
+
+.love-box h1{
+    font-size:42px;
+    margin-bottom:15px;
+    text-shadow:0 3px 8px rgba(0,0,0,0.25);
+}
+
+.love-box h2{
+    font-size:30px;
+    margin:25px 0;
+}
+
+.love-box p{
+    font-size:18px;
+    line-height:1.6;
+}
+
+.btn-area{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    position:relative;
+}
+
+.btn{
+    border:none;
+    padding:15px 38px;
+    border-radius:50px;
+    font-size:19px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+
+.yes-btn{
+    background:#ff006e;
+    color:white;
+}
+
+.yes-btn:hover{
+    transform:scale(1.12);
+    background:#e6005c;
+}
+
+.no-btn{
+    background:white;
+    color:#ff006e;
+    position:absolute;
+    top:0;
+    left:calc(50% + 120px);
+    transform:translateX(-50%);
+    z-index:9999;
+}
+
+.no-btn:hover{
+    transform:scale(1.05);
+}
+
+/* Love letter page */
+.letter-card{
+    position:relative;
+    z-index:2;
+    width:95%;
+    max-width:850px;
+    max-height:88vh;
+    overflow-y:auto;
+    background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,221,245,0.5));
+    backdrop-filter:blur(18px);
+    border-radius:35px;
+    padding:35px;
+    color:#1d1d38;
+    box-shadow:0 18px 50px rgba(0,0,0,0.22);
+    border:1px solid rgba(255,255,255,0.55);
+}
+
+.letter-card::after{
+    content:'💌';
+    position:absolute;
+    top:18px;
+    right:20px;
+    font-size:40px;
+    opacity:0.35;
+}
+
+#page2 .letter-card{
+    background:linear-gradient(135deg,rgba(255,245,245,0.95),rgba(255,220,235,0.85));
+    color:#391e3e;
+}
+#page2 .letter-card h1{color:#a12e6d;}
+#page2 .letter-card h2{color:#bf6fa2;}
+
+#pageGiftLetter .letter-card{
+    background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(230,240,255,0.8));
+    color:#2f1f42;
+}
+
+#pageAbout1 .letter-card, #pageAbout2 .letter-card, #pageAbout3 .letter-card{
+    background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,230,250,0.75));
+    color:#362244;
+}
+
+.letter-card h1{
+    font-size:42px;
+    margin-bottom:25px;
+    color:white;
+}
+
+.letter-card p{
+    font-size:20px;
+    line-height:1.9;
+    text-align:left;
+}
+
+.next-btn{
+    margin-top:30px;
+    background:white;
+    color:#ff006e;
+}
+
+.next-btn:hover{
+    transform:scale(1.08);
+}
+
+/* Gallery page */
+.gallery-page{
+    align-items:flex-start;
+    overflow-y:auto;
+}
+
+.gallery-container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1200px;
+    padding:25px 10px 70px;
+}
+
+.gallery-container h1{
+    color:white;
+    font-size:42px;
+    margin-bottom:10px;
+    text-shadow:0 3px 8px rgba(0,0,0,0.25);
+}
+
+.gallery-container .small-text{
+    color:white;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.photo-card{
+    background:rgba(255,255,255,0.22);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:15px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    border:2px solid rgba(255,255,255,0.35);
+    transition:0.3s;
+}
+
+.photo-card:hover{
+    transform:translateY(-8px) scale(1.02);
+}
+
+.photo-card img{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    border-radius:20px;
+    background:#fff0f6;
+}
+
+.photo-card p{
+    color:white;
+    font-size:17px;
+    line-height:1.5;
+    margin-top:15px;
+}
+
+/* Final page */
+.final-card{
+    position:relative;
+    z-index:2;
+    width:95%;
+    max-width:750px;
+    background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,235,250,0.65));
+    backdrop-filter:blur(20px);
+    border-radius:35px;
+    padding:45px 30px;
+    color:#330f34;
+    box-shadow:0 20px 70px rgba(204,55,120,0.28);
+    border:1px solid rgba(255,255,255,0.65);
+}
+
+.final-card::after{
+    content:'💌';
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    font-size:64px;
+    opacity:0.18;
+}
+
+.final-card::before{
+    content:'💕';
+    position:absolute;
+    top:18px;
+    left:20px;
+    font-size:56px;
+    opacity:0.18;
+}
+
+#page4 .final-card{
+    background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,210,235,0.72));
+    color:#411839;
+}
+
+#page4 .final-card h1{
+    color:#980e5d;
+    text-shadow:0 0 20px rgba(255,255,255,0.9);
+}
+
+#page4 .final-card p{
+    color:#3b1637;
+}
+
+.final-card h1{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.final-card p{
+    font-size:22px;
+    line-height:1.8;
+}
+
+.signature{
+    margin-top:25px;
+    font-size:26px;
+    font-weight:bold;
+}
+
+/* Fireworks */
+.firework{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:white;
+    animation:firework 1.5s ease-out infinite;
+}
+
+.firework:nth-child(1){top:20%;left:20%;animation-delay:0s;}
+.firework:nth-child(2){top:25%;left:75%;animation-delay:0.4s;}
+.firework:nth-child(3){top:65%;left:30%;animation-delay:0.8s;}
+.firework:nth-child(4){top:70%;left:80%;animation-delay:1.1s;}
+
+@keyframes firework{
+    0%{
+        box-shadow:
+        0 0 white,
+        0 0 white,
+        0 0 white,
+        0 0 white;
+        opacity:1;
+    }
+    100%{
+        box-shadow:
+        0 -60px white,
+        50px 20px pink,
+        -50px 20px hotpink,
+        0 60px white;
+        opacity:0;
+    }
+}
+
+@media(max-width:600px){
+    .love-box h1{
+        font-size:32px;
+    }
+
+    .love-box h2{
+        font-size:25px;
+    }
+
+    .letter-card{
+        padding:25px;
+    }
+
+    .letter-card h1{
+        font-size:32px;
+    }
+
+    .letter-card p{
+        font-size:17px;
+    }
+
+    .gallery-container h1{
+        font-size:32px;
+    }
+
+    .photo-card img{
+        height:280px;
+    }
+
+    .final-card h1{
+        font-size:34px;
+    }
+
+    .final-card p{
+        font-size:18px;
+    }
+
+    .btn{
+        padding:13px 28px;
+        font-size:17px;
+    }
+}
+
+/* Countdown & Gift styles */
+.countdown{
+    font-size:72px;
+    font-weight:800;
+    color:white;
+    margin:20px 0 0 0;
+    text-shadow:0 6px 18px rgba(0,0,0,0.3);
+}
+
+.gift-box{
+    font-size:72px;
+    width:140px;
+    height:140px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto;
+    cursor:pointer;
+    background:linear-gradient(135deg,#fff,#ffd6ea);
+    box-shadow:0 12px 30px rgba(0,0,0,0.25);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gift-box:hover{transform:translateY(-6px) scale(1.03);}
+.gift-box.pop{animation:pop 0.6s ease forwards}
+@keyframes pop{0%{transform:scale(0.6)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+.moving-photo{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    border:3px solid rgba(255,255,255,0.35);
+    z-index:3;
+}
+.moving-photo.left{left:-70px; animation:sideLeft 4.5s ease-in-out infinite}
+.moving-photo.right{right:-70px; animation:sideRight 4.5s ease-in-out infinite}
+@keyframes sideLeft{0%{transform:translate(-8px,-50%)}50%{transform:translate(8px,-50%)}100%{transform:translate(-8px,-50%)}}
+@keyframes sideRight{0%{transform:translate(8px,-50%)}50%{transform:translate(-8px,-50%)}100%{transform:translate(8px,-50%)}}
+
+/* Floating upward photos shown on both sides of every page */
+.floating-photo{
+    position:fixed;
+    bottom:-160px;
+    width:140px;
+    height:140px;
+    object-fit:cover;
+    border-radius:16px;
+    box-shadow:0 14px 40px rgba(0,0,0,0.25);
+    border:3px solid rgba(255,255,255,0.35);
+    z-index:4;
+    pointer-events:none;
+}
+.floating-photo.left{left:10px; animation:floatUpLeft 9s linear infinite}
+.floating-photo.right{right:10px; animation:floatUpRight 9s linear infinite}
+@keyframes floatUpLeft{
+    0%{transform:translateY(0) scale(0.95); opacity:0}
+    10%{opacity:1}
+    50%{transform:translateY(-120vh) scale(1); opacity:0.9}
+    100%{transform:translateY(-140vh) scale(0.95); opacity:0}
+}
+@keyframes floatUpRight{
+    0%{transform:translateY(0) scale(0.95); opacity:0}
+    8%{opacity:1}
+    48%{transform:translateY(-120vh) scale(1); opacity:0.9}
+    100%{transform:translateY(-140vh) scale(0.95); opacity:0}
+}
+
+/* Size variants and staggered timings for extra floating photos */
+.floating-photo.small{width:100px;height:100px;border-radius:12px}
+.floating-photo.medium{width:120px;height:120px;border-radius:14px}
+.floating-photo.tiny{width:80px;height:80px;border-radius:10px}
+.floating-photo.left.alt{left:60px; animation-duration:10s}
+.floating-photo.right.alt{right:60px; animation-duration:8.5s}
+
+/* Small emoji badges that follow floating-photo timing */
+.floating-emoji{position:fixed;font-size:18px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:5}
+.floating-emoji.left{left:130px;animation:floatUpLeft 9s linear infinite}
+.floating-emoji.right{right:130px;animation:floatUpRight 9s linear infinite}
+.floating-emoji.left.alt{left:180px}
+.floating-emoji.right.alt{right:180px}
+.floating-emoji.tiny{font-size:14px;width:20px;height:20px}
+
+/* Bouquet and message UI */
+.bouquet{
+    width:160px;
+    height:160px;
+    margin:18px auto 0;
+    display:none;
+    transform-origin:center;
+    animation:bouquetPop 0.6s ease forwards;
+}
+@keyframes bouquetPop{0%{transform:scale(0.4);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
+
+.tnx-text{color:#fff;margin-top:12px;opacity:0;transition:opacity .4s ease}
+.tnx-text.show{opacity:1}
+
+/* Letter aesthetic variants */
+.letter-card.aesthetic-handwritten{
+    font-family:'Pacifico', cursive;
+    background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,230,240,0.08));
+    color:#fff7f9;
+}
+.letter-card.aesthetic-handwritten p{font-size:20px;line-height:1.9}
+.letter-card.aesthetic-classic{font-family:'Georgia', serif; background:rgba(255,255,255,0.12); color:#fffefc}
+
+.message-chooser{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.6);padding:18px;border-radius:12px;z-index:50;display:none}
+.message-chooser button{margin:8px}
+
+/* Clickable white letter preview */
+.letter-img{width:220px;height:140px;background:#ffffff;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.25);border:3px solid rgba(0,0,0,0.06);cursor:pointer;display:inline-block}
+.letter-img:before{content:'';display:block;width:70px;height:12px;background:linear-gradient(90deg,#f3f3f3,#eaeaea);margin:22px auto;border-radius:6px}
+.letter-img:after{content:'✉';display:block;text-align:center;margin-top:18px;font-size:34px;color:#d94b7b}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background hearts -->
+<div class="hearts">
+    <span>❤️</span>
+    <span>💕</span>
+    <span>💖</span>
+    <span>💗</span>
+    <span>💘</span>
+    <span>❤️</span>
+    <span>💕</span>
+    <span>💖</span>
+    <span>💝</span>
+    <span>💞</span>
+</div>
+
+<!-- Floating photos that rise from bottom on both sides across all pages -->
+<div style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:4;">
+    <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM (1).jpeg" class="floating-photo left" style="animation-delay:0s" alt="Purnima float left">
+    <span class="floating-emoji left" style="animation-delay:0.2s">🌸</span>
+
+    <img src="WhatsApp Image 2026-06-19 at 3.40.10 PM.jpeg" class="floating-photo right" style="animation-delay:1s" alt="Purnima float right">
+    <span class="floating-emoji right" style="animation-delay:1.2s">💖</span>
+
+    <img src="WhatsApp Image 2026-06-19 at 3.40.09 PM (1).jpeg" class="floating-photo left alt medium" style="animation-delay:2s" alt="Purnima float left 2">
+    <span class="floating-emoji left alt" style="animation-delay:2.2s">✨</span>
+
+    <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM (3) - Copy.jpeg" class="floating-photo right alt small" style="animation-delay:3s" alt="Purnima float right 2">
+    <span class="floating-emoji right alt" style="animation-delay:3.2s">🌹</span>
+
+    <img src="WhatsApp Image 2026-06-19 at 7.41.04 PM.jpeg" class="floating-photo left tiny" style="animation-delay:4s" alt="Purnima float tiny">
+    <span class="floating-emoji left tiny" style="animation-delay:4.2s">🎀</span>
+</div>
+
+<!-- Page 1 -->
+<section class="page active" id="page1">
+    <div class="love-box">
+        <h1>Hi Purnima ❤️</h1>
+        <p>
+            This cute little world is made only for you,  
+            from someone who loves you more than words can say.
+        </p>
+
+        <h2>Do You Love Me? 🥺❤️</h2>
+
+        <div class="btn-area">
+            <button class="btn yes-btn" onclick="startGiftOnPage1()">YES ❤️</button>
+            <button class="btn no-btn" id="noBtn">NO 💔</button>
+        </div>
+        <div id="page1-gift" style="margin-top:18px;">
+            <div class="countdown" id="page1-countdown" style="display:none;">3</div>
+            <div class="gift-area" id="page1-giftArea" style="display:none; margin-top:12px;">
+                <div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-direction:column;">
+                    <div class="gift-box" id="page1-giftBox" title="Click to open your surprise">🎁</div>
+                    <button class="btn" style="background:white;color:#ff006e;margin-top:6px;" onclick="openGiftBox()">Open Gift Box</button>
+                </div>
+                <p style="margin-top:12px; color:white;">Tap the gift to open your letter ❤️</p>
+                <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM (3).jpeg" id="page1-bouquet" class="bouquet" alt="bouquet">
+                <div id="page1-tnx" class="tnx-text">Thanks for opening my surprise ❤️</div>
+                <div style="margin-top:12px;">
+                    <button id="openMessageBtn" class="btn" style="display:none;background:white;color:#ff006e;" onclick="openMessagePrompt()">Open my message for u</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Page 1 -->
+<section class="page" id="pageAbout1">
+    <div class="letter-card">
+        <h1>About Purnima — Her Smile</h1>
+        <p>
+            Her smile brightens the dullest days and turns ordinary moments into memories.
+            It's gentle, honest, and full of warmth — the kind that makes everything feel right.
+        </p>
+        <button class="btn next-btn" onclick="showPage('pageAbout2')">More ➜</button>
+        <button class="btn" style="background:white;color:#ff006e;margin-left:12px;" onclick="showPage('page1')">Back</button>
+    </div>
+</section>
+
+<!-- About Page 2 -->
+<section class="page" id="pageAbout2">
+    <div class="letter-card">
+        <h1>About Purnima — Her Heart</h1>
+        <p>
+            She is kind, strong, and thoughtful — the kind of person who quietly lifts others up.
+            Her presence brings calm, her words bring comfort, and her laugh is contagious.
+        </p>
+        <button class="btn next-btn" onclick="showPage('page3')">See Memories ➜</button>
+        <button class="btn" style="background:white;color:#ff006e;margin-left:12px;" onclick="showPage('pageAbout1')">Back</button>
+    </div>
+</section>
+
+<!-- About Page 3 -->
+<section class="page" id="pageAbout3">
+    <div class="letter-card">
+        <h1>About Purnima — Little Things</h1>
+        <p>
+            The little things she does — a caring message, a thoughtful glance — make ordinary
+            days special. She cherishes simplicity and fills life with quiet joy.
+        </p>
+        <button class="btn next-btn" onclick="showPage('pageMem2')">More Memories ➜</button>
+        <button class="btn" style="background:white;color:#ff006e;margin-left:12px;" onclick="showPage('pageAbout2')">Back</button>
+    </div>
+</section>
+
+<!-- Additional Memories Page -->
+<section class="page gallery-page" id="pageMem2">
+    <div class="gallery-container">
+        <h1>More Memories 📷❤️</h1>
+        <p class="small-text">A few more moments that make our story.</p>
+
+        <div class="gallery">
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.10 PM (1).jpeg" alt="memory extra 1">
+                <p>"That rainy evening when we laughed until we cried ☔️💕"</p>
+            </div>
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.09 PM (2).jpeg" alt="memory extra 2">
+                <p>"Candid moments are the truest ones ✨"</p>
+            </div>
+        </div>
+
+        <button class="btn next-btn" onclick="showPage('pageAfterGallery')">Next ➜</button>
+        <button class="btn" style="background:white;color:#ff006e;margin-left:12px;" onclick="showPage('pageAbout3')">Back</button>
+    </div>
+</section>
+
+
+<!-- Page 2 -->
+<section class="page" id="page2">
+    <div class="letter-card" id="page2-letter">
+        <h1>For My Purnima ❤️</h1>
+        <h2 class="small-text">A message from my heart</h2>
+
+        <p>
+            Dear Purnima,<br><br>
+
+            Hyy nana ...🫂♥️😘🥰
+.
+Edo oka special note nana nikosam ♥️🫂
+.Jeevitham lo evarikaina oka special person aina fav person aina untaru na Jeevitham lo anni nuve nana ♥️🫂😘
+Na family nannu ela chusukunaro valakante nannu inka baga baga chusukunav ..oka abbai ga ela unnadli ..  kadhu oka man la ela undali ani e lokam lo naku chupinchav ..tq very much nana 🫂😘♥️🥰
+Ee Jeevitham motham nithone unta ani korukuntuna ..oka vela porapatuna ..ne lekapotina ..nuv hapi ga undali nana...🫂🤌...nenu epudu nithone unta ok na 
+...no matter what the situation is 🫂🤌♥️.
+Manam ipati varaku chesina journey lo manam enni face chesam nana godavalu kopalu chala sarlu tittukunam annitiki Nene Karanam nana asalu ..I'm really really sorry 😔 😔 ..kani enni godavalu aina ..entha tittukuna sare final ga matter nisort chesukoni okati aipotham ..godava entha pedhadhi aina kani ...this is called love nana 🫂♥️🥰✨
+Nana na valla NUV entha suffer ayyavo nak telusu nana chustuna ..ni life lo epudu feel avvanatha feel avutunav ..antha ibbandhipedutuna nana 🥺🥲I'm sorry nana 😔 evarevaru aithey ninnu annaru vala andariki ela cheyalo ala chedam nana nen unna nitho 🫂🫂♥️nen unt ok na...
+Na life lo edaina miracle jarigindhi ante NUV na life loki ravatame nana ..🫂♥️🤌
+U r the best for me ♥️ 🫂 nikosam edaina cheyagalanu nana ...entha kastam aina padatha kani NUV natho unte chalu ..I can do what ever u. Want ..pelli avvani nana NUV anukuna dream life nenu CHESI chupista ...em kavali ante adi alochincha kunda tisukunela chesta entha kastam aina padatha nana ..♥️🫂🤌kevalam nikosam nana ...entha nachav ante bahusa daniki oka particular size r length undadhu emo nana na Prema ki antha antha nachesav nachutune untav nana ♥️🫂🤌✨
+Naku antunav oke oka biggest supporter nana NUV ...🫂♥️
+
+.
+I think ninnu sariga chusukovatam ledhu anna premaga aina ...food tinipinchatam lo aina gifts ivvatam lo aina ninnu chusukune vidanam chala takuvaga undhi nana.. I'll improve my self and behave like a men ok just give me the last one time it won't repeat againok 🫂♥️✨🤌 
+.
+.
+.final ga nana e oka note ki conclusion istuna nana 
+.
+.
+.
+Nikosam nen unna unta ..ekadikaina vasta edaina chesta ..nen unna lekuna nuv Jeevitham lo epudu badha padakudadhu ..asalu edava kudadhu nana ok na ..entha kastam vachina nen unna nen chusukunta 🫂♥️✨epatiki marchipoku nana inka 🫂🫂nikosam okadu unnadu untadu ...tq for choosing me ..tq for cmg to my life 🫂 ♥️ ni gurinchi entha chepina takkuva nana ...em chesina takkuve..  so finally 
+I LOVE U MY DEAREST GAJUBOMMA OF MY LIFE 🫂♥️🤌🥰😘.<br><br>
+
+           
+
+            Purnima, you are my happiness, my peace, my dream, my favorite person, and my
+            forever love. No matter where life takes us, my heart will always choose you again
+            and again.<br><br>
+
+            With all my heart,<br>
+            Siva ❤️
+        </p>
+
+        <button class="btn next-btn" onclick="showPage('page3')">Next Memories ➜</button>
+    </div>
+</section>
+
+<!-- Gift Letter Preview Page -->
+<section class="page" id="pageGiftLetter">
+    <div class="letter-card">
+        <h1>Your Letter</h1>
+        <p style="margin-top:8px;">A little note is closed inside — click to open it.</p>
+        <div style="margin:18px 0;">
+            <div class="letter-img" onclick="openFinalLetter()" title="Click to open the letter"></div>
+        </div>
+        <div>
+            <button class="btn next-btn" onclick="openFinalLetter()">Open Letter ➜</button>
+            <button class="btn" style="background:white;color:#ff006e;margin-left:12px;" onclick="showPage('page1')">Back</button>
+        </div>
+    </div>
+</section>
+
+<!-- Page 3 Gallery -->
+<section class="page gallery-page" id="page3">
+    <div class="gallery-container">
+        <h1>Our Beautiful Memories 📸❤️</h1>
+        <p class="small-text">Every picture has a heartbeat, and every heartbeat says Purnima ❤️</p>
+
+        <div class="gallery">
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 7.41.04 PM (1).jpeg" alt="Purnima memory 1">
+                <p>"Holding your hand feels like holding my whole world ❤️"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM (2).jpeg" alt="Purnima memory 2">
+                <p>"Every walk with you becomes my favorite journey 💕"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.09 PM (2).jpeg" alt="Purnima memory 3">
+                <p>"Small moments with you become lifetime memories ✨"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.09 PM.jpeg" alt="Purnima memory 4">
+                <p>"Your presence makes even silence feel beautiful ❤️"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.09 PM (1).jpeg" alt="Purnima memory 5">
+                <p>"When you smile, my heart forgets every sadness 😊"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM.jpeg" alt="Purnima memory 6">
+                <p>"You are the cutest chapter of my life story 💖"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.10 PM.jpeg" alt="Purnima memory 7">
+                <p>"Beside you, every Sunday feels like a celebration ❤️"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM (3) - Copy.jpeg" alt="Purnima memory 8">
+                <p>"Your smile is my favorite view in this world 🌍"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 3.40.08 PM.jpeg" alt="Purnima memory 9">
+                <p>"With you, even simple places become magical ✨"</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="WhatsApp Image 2026-06-19 at 7.41.04 PM.jpeg" alt="Purnima memory 10">
+                <p>"Forever is not enough when it is with you ❤️"</p>
+            </div>
+
+        </div>
+
+        <button class="btn next-btn" onclick="showPage('pageAfterGallery')">Next ➜</button>
+    </div>
+</section>
+
+<!-- Page 4 Final -->
+<section class="page" id="page4">
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+
+    <div class="final-card">
+        <h1>One Last Promise</h1>
+
+        <p>
+            Thank you for spending these moments with me. I promise to always try to
+            bring a smile to your face, to listen, and to stand by you.
+            This is my little promise to you — forever and always.
+        </p>
+
+        <div class="signature">
+            With love,<br>
+            Siva ❤️
+        </div>
+        <div style="margin-top:18px;">
+            <button class="btn next-btn" onclick="showPage('page1')">Back to Start</button>
+        </div>
+    </div>
+</section>
+
+<!-- After Gallery: One Last Thing -->
+<section class="page" id="pageAfterGallery">
+    <div class="final-card">
+        <h1>One Last Thing...</h1>
+        <p>
+            Before anything else, I wanted to remind you how much you mean to me.
+            This small page holds a final little surprise — just click below to see.
+        </p>
+        <div style="margin-top:18px;">
+            <button class="btn next-btn" onclick="showPage('page4')">Reveal ➜</button>
+            <button class="btn" style="background:white;color:#ff006e;margin-left:12px;" onclick="showPage('page3')">Back</button>
+        </div>
+    </div>
+</section>
+
+<!-- Message chooser (hidden until user clicks open message) -->
+<div id="messageChooser" class="message-chooser">
+    <div style="color:white;margin-bottom:8px;text-align:center">Choose a letter style</div>
+    <div style="display:flex;justify-content:center;gap:8px;">
+        <button class="btn" onclick="chooseLetter('handwritten')">Handwritten</button>
+        <button class="btn" onclick="chooseLetter('classic')">Classic</button>
+        <button class="btn" onclick="chooseLetter('typed')">Typed</button>
+    </div>
+    <div style="text-align:center;margin-top:8px;"><button class="btn" onclick="document.getElementById('messageChooser').style.display='none'">Cancel</button></div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+/* NO button visible but almost impossible to click */
+function moveNoButton(){
+    const page1 = document.getElementById('page1');
+    if(!page1 || !noBtn) return;
+
+    const pageRect = page1.getBoundingClientRect();
+    const buttonRect = noBtn.getBoundingClientRect();
+
+    const maxX = pageRect.width - buttonRect.width - 20;
+    const maxY = pageRect.height - buttonRect.height - 20;
+
+    const randomX = Math.floor(Math.random() * Math.max(maxX, 0));
+    const randomY = Math.floor(Math.random() * Math.max(maxY, 0));
+
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
+}
+
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    moveNoButton();
+});
+
+/* Start 3-second countdown on page 1, then reveal gift box */
+function startGiftOnPage1(){
+    const countdownEl = document.getElementById('page1-countdown');
+    const giftArea = document.getElementById('page1-giftArea');
+    const giftBox = document.getElementById('page1-giftBox');
+    if(!countdownEl || !giftArea) return;
+    countdownEl.style.display = 'block';
+    giftArea.style.display = 'none';
+    let count = 3;
+    countdownEl.textContent = count;
+    if(window._giftInterval) clearInterval(window._giftInterval);
+    window._giftInterval = setInterval(()=>{
+        count--;
+        if(count>0){
+            countdownEl.textContent = count;
+        } else {
+            clearInterval(window._giftInterval);
+            countdownEl.style.display = 'none';
+            giftArea.style.display = 'block';
+            if(giftBox) giftBox.classList.add('pop');
+        }
+    },1000);
+    if(giftBox) giftBox.onclick = openGiftBox;
+}
+
+function openGiftBox(){
+    // navigate directly to the letter preview page
+    window.selectedLetterType = window.selectedLetterType || 'typed';
+    showPage('pageGiftLetter');
+}
+
+function openMessagePrompt(){
+    const chooser = document.getElementById('messageChooser');
+    if(chooser) chooser.style.display = 'block';
+}
+
+function chooseLetter(type){
+    const chooser = document.getElementById('messageChooser');
+    if(chooser) chooser.style.display = 'none';
+    window.selectedLetterType = type || 'typed';
+    // go to preview page which then opens the full letter
+    showPage('pageGiftLetter');
+}
+
+function openFinalLetter(){
+    const letterCard = document.getElementById('page2-letter');
+    const type = window.selectedLetterType || 'typed';
+    if(letterCard){
+        letterCard.classList.remove('aesthetic-handwritten','aesthetic-classic');
+        if(type === 'handwritten') letterCard.classList.add('aesthetic-handwritten');
+        else if(type === 'classic') letterCard.classList.add('aesthetic-classic');
+    }
+    showPage('page2');
+}
+
+/* Page change - unified */
+function showPage(pageId){
+    const pages = document.querySelectorAll(".page");
+    pages.forEach(page => {
+        page.classList.remove("active");
+    });
+
+    const target = document.getElementById(pageId);
+    if(target) target.classList.add("active");
+
+    if(pageId === "page3"){
+        document.body.style.overflow = "auto";
+    } else {
+        document.body.style.overflow = "hidden";
+    }
+}
+
+// place NO button initially so it's clickable from start
+moveNoButton();
+</script>
+
+</body>
+</html>
